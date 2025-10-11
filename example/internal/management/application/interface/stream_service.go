@@ -9,6 +9,7 @@ type StreamService interface{
     Stream(q query.StreamQuery) (r query.StreamQueryResult, err error)
     Configuration(q query.ConfigurationQuery) (r query.ConfigurationQueryResult, err error)
     StreamCreate(c command.StreamCreateCommand) (r command.StreamCreateCommandResult, err error)
+    StreamUpdate(c command.StreamUpdateCommand) (r command.StreamUpdateCommandResult, err error)
     ConfigurationCreate(c command.ConfigurationCreateCommand) (r command.ConfigurationCreateCommandResult, err error)
     ConfigurationUpdate(c command.ConfigurationUpdateCommand) (r command.ConfigurationUpdateCommandResult, err error)
 }

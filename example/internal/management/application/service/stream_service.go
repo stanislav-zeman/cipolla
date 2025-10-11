@@ -36,6 +36,11 @@ func (s *StreamService) StreamCreate(c command.StreamCreateCommand) (r command.S
     panic("unimplemented")
 }
 
+func (s *StreamService) StreamUpdate(c command.StreamUpdateCommand) (r command.StreamUpdateCommandResult, err error) {
+    _ = c
+    panic("unimplemented")
+}
+
 func (s *StreamService) ConfigurationCreate(c command.ConfigurationCreateCommand) (r command.ConfigurationCreateCommandResult, err error) {
     _ = c
     panic("unimplemented")
