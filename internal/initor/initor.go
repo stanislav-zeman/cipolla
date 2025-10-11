@@ -85,7 +85,7 @@ func (i *Initor) AddDependencies(dependencies []string) error {
 			continue
 		}
 
-		cmd := exec.Command("go", "get", dependency) //nolint: gosec
+		cmd := exec.Command("go", "get", dependency)
 		cmd.Dir = i.directory
 
 		out, err := cmd.CombinedOutput()
@@ -94,7 +94,7 @@ func (i *Initor) AddDependencies(dependencies []string) error {
 		}
 	}
 
-	cmd := exec.Command("go", "mod", "tidy") //nolint: gosec
+	cmd := exec.Command("go", "mod", "tidy")
 	cmd.Dir = i.directory
 
 	out, err := cmd.CombinedOutput()
