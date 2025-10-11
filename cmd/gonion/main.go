@@ -38,7 +38,7 @@ func runGonion() error {
 	}
 
 	var conf config.Config
-	err = yaml.Unmarshal(f, &conf)
+	err = yaml.Unmarshal(f, &conf) //nolint: musttag
 	if err != nil {
 		return fmt.Errorf("failed unmarshalling config file: %w", err)
 	}

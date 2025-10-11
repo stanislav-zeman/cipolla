@@ -33,7 +33,7 @@ func New(config config.Config, templator templator.Templator, writer writer.Writ
 	}
 }
 
-func (p *Processor) Run() (dependencies []string, err error) {
+func (p *Processor) Run() (dependencies []string, err error) { //nolint: cyclop
 	for serviceName, service := range p.config.Services {
 		logger, err := dto.ParseLogger(service.Logger)
 		if err != nil {
