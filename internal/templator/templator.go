@@ -2,12 +2,16 @@ package templator
 
 import (
 	"bytes"
+	"errors"
+	"fmt"
 	"path/filepath"
 	"text/template"
 
 	"github.com/stanislav-zeman/gonion/internal/dto"
 	"github.com/stanislav-zeman/gonion/internal/layers"
 )
+
+var ErrFailedParsingTemplate = errors.New("failed parsing template")
 
 // Templator holds all of the object templates and exposes
 // an API to template them.
@@ -27,67 +31,90 @@ type Templator struct {
 
 	// Application templates.
 	infraRepository *template.Template
+
+	// API templates.
+	apiController *template.Template
+	apiRequest    *template.Template
+	apiResponse   *template.Template
 }
 
 func New(assetsDirector string) (t Templator, err error) { //nolint: cyclop
 	fp := filepath.Join(assetsDirector, layers.DomainLayer, "entity.tmpl")
 	entity, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.DomainLayer, "value.tmpl")
 	value, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.DomainLayer, "interface.tmpl")
 	domainInterface, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.DomainLayer, "service.tmpl")
 	domainService, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.DomainLayer, "repository.tmpl")
 	domainRepository, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.ApplicationLayer, "command.tmpl")
 	command, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.ApplicationLayer, "query.tmpl")
 	query, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.ApplicationLayer, "interface.tmpl")
 	appInterface, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.ApplicationLayer, "service.tmpl")
 	appService, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.InfrastructureLayer, "repository.tmpl")
 	infraRepository, err := template.ParseFiles(fp)
 	if err != nil {
-		return
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
+	}
+
+	fp = filepath.Join(assetsDirector, layers.APILayer, "rest/controller.tmpl")
+	apiController, err := template.ParseFiles(fp)
+	if err != nil {
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
+	}
+
+	fp = filepath.Join(assetsDirector, layers.APILayer, "rest/request.tmpl")
+	apiRequest, err := template.ParseFiles(fp)
+	if err != nil {
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
+	}
+
+	fp = filepath.Join(assetsDirector, layers.APILayer, "rest/response.tmpl")
+	apiResponse, err := template.ParseFiles(fp)
+	if err != nil {
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	t = Templator{
@@ -103,9 +130,13 @@ func New(assetsDirector string) (t Templator, err error) { //nolint: cyclop
 		appService:   appService,
 
 		infraRepository: infraRepository,
+
+		apiController: apiController,
+		apiRequest:    apiRequest,
+		apiResponse:   apiResponse,
 	}
 
-	return
+	return t, nil
 }
 
 // ----------------------------------------------------------------------------
@@ -154,14 +185,28 @@ func (t *Templator) TemplateInfrastructureRepository(r dto.Repository) (data []b
 	return templateObject(t.infraRepository, r)
 }
 
+// ----------------------------------------------------------------------------
+
+func (t *Templator) TemplateRESTAPIController(r dto.Controller) (data []byte, err error) {
+	return templateObject(t.apiController, r)
+}
+
+func (t *Templator) TemplateRESTAPIRequest(r dto.Request) (data []byte, err error) {
+	return templateObject(t.apiRequest, r)
+}
+
+func (t *Templator) TemplateRESTAPIResponse(r dto.Response) (data []byte, err error) {
+	return templateObject(t.apiResponse, r)
+}
+
 func templateObject(t *template.Template, object any) (data []byte, err error) {
 	b := bytes.NewBuffer(make([]byte, 0))
 
 	err = t.Execute(b, object)
 	if err != nil {
-		return
+		return nil, fmt.Errorf("failed executing template: %w", err)
 	}
 
 	data = b.Bytes()
-	return
+	return data, nil
 }
