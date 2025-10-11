@@ -12,10 +12,19 @@ type Config struct {
 type ServiceConfig struct {
 	Logger         string               `yaml:"logger,omitempty"`
 	Config         bool                 `yaml:"config,omitempty"`
-	API            map[string]any       `yaml:"api,omitempty"`
+	API            APIConfig            `yaml:"api,omitempty"`
 	Application    ApplicationConfig    `yaml:"application,omitempty"`
 	Domain         DomainConfig         `yaml:"domain,omitempty"`
 	Infrastructure InfrastructureConfig `yaml:"infrastructure,omitempty"`
+}
+
+type APIConfig struct {
+	REST RESTConfig `yaml:"rest,omitempty"`
+}
+
+type RESTConfig struct {
+	Framework   string           `yaml:"framework,omitempty"`
+	Controllers []dto.Controller `yaml:"controller,omitempty"`
 }
 
 type ApplicationConfig struct {
