@@ -9,20 +9,10 @@ services:
             rest:
                 framework: echo
                 controller:
-                    - Configuration
-                    - Stream
-                endpoints:
-                    - name: Stream
-                      controller: Stream
-                      methods:
-                        - get
-                        - post
-                    - name: Configuration
-                      controller: Configuration
-                      methods:
-                        - get
-                        - post
-                        - patch
+                  - name: Configuration
+                    methods: [get, post]
+                  - name: Stream
+                    methods: [get, post, patch]
         application:
             service:
                 - name: Stream
@@ -39,6 +29,7 @@ services:
                           type: string
                         - name: Name
                           type: string
+                    - name: StreamUpdate
                     - name: ConfigurationCreate
                     - name: ConfigurationUpdate
         domain:
@@ -77,16 +68,8 @@ services:
             rest:
                 framework: echo
                 controller:
-                    - Program
-                endpoints:
                     - name: Program
-                      controller: Program
-                      methods:
-                        - get
-                    - name: Programs
-                      controller: Program
-                      methods:
-                        - get
+                      methods: [get]
         application:
             service:
                 - name: Program
