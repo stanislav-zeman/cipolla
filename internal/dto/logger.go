@@ -11,26 +11,29 @@ type Logger struct {
 	Package string
 }
 
-func ParseLogger(loggerName string) (logger Logger, err error) {
-	switch loggerName {
+func ParseLogger(name string) (logger Logger, err error) {
+	switch name {
 	case "slog":
 		logger = Logger{
 			Struct:  "*slog.Logger",
 			Package: "slog",
 		}
 		return
+
 	case "zap":
 		logger = Logger{
 			Struct:  "*zap.Logger",
 			Package: "go.uber.org/zap",
 		}
 		return
+
 	case "zerolog":
 		logger = Logger{
 			Struct:  "*zerolog.Logger",
 			Package: "github.com/rs/zerolog",
 		}
 		return
+
 	default:
 		err = ErrUnknownLogger
 		return
