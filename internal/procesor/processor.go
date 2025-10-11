@@ -84,6 +84,16 @@ func (p *Processor) Run() (dependencies []string, err error) {
 		}
 
 		// --------------------------------------------------------------------------
+
+		framework, err := dto.ParseFramework(service.API.REST.Framework)
+		if err != nil {
+			return nil, fmt.Errorf("failed parsing api rest framework: %w", err)
+		}
+
+		err = p.processAPIRESTControllers(serviceName, logger, framework, service.API.REST.Controllers)
+		if err != nil {
+			return nil, fmt.Errorf("failed processing api rest controllers: %w", err)
+		}
 	}
 
 	// Deduplicate dependencies.
