@@ -29,6 +29,7 @@ linters-settings:
                     - $gostd
                     - github.com/stanislav-zeman/gonion
                     - gopkg.in/yaml.v3
+                    - golang.org/x/text
     gocyclo:
         min-complexity: 16
 
