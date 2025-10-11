@@ -74,6 +74,23 @@ func (w *Writer) WriteInfrastructureRepository(service, name, typ string, data [
 	return w.writeFile(service, layers.InfrastructureLayer, filepath.Join("persistence", typ), name+"_repository", data)
 }
 
+// ----------------------------------------------------------------------------
+
+func (w *Writer) WriteAPIController(service, name string, data []byte) error {
+	directory := "controller"
+	return w.writeFile(service, layers.APILayer, directory, name+"_"+directory, data)
+}
+
+func (w *Writer) WriteAPIRequest(service, method, name string, data []byte) error {
+	directory := "request"
+	return w.writeFile(service, layers.APILayer, directory, method+"_"+name+"_"+directory, data)
+}
+
+func (w *Writer) WriteAPIResponse(service, method, name string, data []byte) error {
+	directory := "response"
+	return w.writeFile(service, layers.APILayer, directory, method+"_"+name+"_"+directory, data)
+}
+
 func (w *Writer) writeFile(service, layer, directory, name string, data []byte) error {
 	fp := filepath.Join(
 		w.directory,
