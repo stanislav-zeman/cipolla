@@ -1,0 +1,20 @@
+package request
+
+import (
+{{- if eq .Method "Get" }}
+    "{{ .Import.Module }}/internal/{{ .Import.Service }}/application/query"
+{{ else }}
+    "{{ .Import.Module }}/internal/{{ .Import.Service }}/application/command"
+{{- end }}
+    "{{ .Framework.Package }}"
+)
+
+type {{ .Method }}{{ .Name }}Request struct{}
+
+func Parse{{ .Method }}{{ .Name }}Request({{ .Framework.ContextName}} {{ .Framework.ContextStruct }}) (r {{ .Method }}{{ .Name }}Request, err error) {
+    return {{ .Method }}{{ .Name }}Request{}, nil
+}
+
+func (r *{{ .Method }}{{ .Name }}Request) To{{ if eq .Method "Get" }}Query{{ else }}Command{{ end }}() (d {{ if eq .Method "Get" }}query{{ else }}command{{ end }}.{{ .ApplicationDTOName }}, err error) {
+    return
+}

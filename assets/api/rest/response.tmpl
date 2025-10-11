@@ -1,0 +1,15 @@
+package response
+
+import (
+{{- if eq .Method "Get" }}
+    "{{ .Import.Module }}/internal/{{ .Import.Service }}/application/query"
+{{ else }}
+    "{{ .Import.Module }}/internal/{{ .Import.Service }}/application/command"
+{{- end }}
+)
+
+type {{ .Method }}{{ .Name }}Response struct{}
+
+func New{{ .Method }}{{ .Name }}Response(r {{ if eq .Method "Get" }}query{{ else }}command{{ end }}.{{ .ApplicationDTOName }}) (res {{ .Method }}{{ .Name }}Response, err error) {
+    return {{ .Method }}{{ .Name }}Response{}, nil
+}
