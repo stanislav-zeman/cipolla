@@ -33,6 +33,13 @@ linters:
       threshold: 200
     gocyclo:
       min-complexity: 16
+    gosec:
+      excludes:
+        - G204 # audit use of command execution
+    revive:
+      rules:
+        - name: exported # no need for docs atm
+          disabled: true
 
 formatters:
   enable:
