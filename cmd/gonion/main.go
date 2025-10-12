@@ -1,10 +1,12 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/stanislav-zeman/gonion/internal/config"
 	"github.com/stanislav-zeman/gonion/internal/initor"
@@ -13,6 +15,8 @@ import (
 	"github.com/stanislav-zeman/gonion/internal/writer"
 	yaml "gopkg.in/yaml.v3"
 )
+
+const applicationTimeout = 30 * time.Second
 
 var (
 	configPath         = flag.String("config", "gonion.yaml", "project structure configuration")
@@ -47,7 +51,10 @@ func runGonion() error {
 
 	i := initor.New(conf, *outputDirectory)
 
-	err = i.Run()
+	ctx, cancel := context.WithTimeout(context.Background(), applicationTimeout)
+	defer cancel()
+
+	err = i.Run(ctx)
 	if err != nil {
 		return fmt.Errorf("failed running initor: %w", err)
 	}
@@ -65,7 +72,7 @@ func runGonion() error {
 		return fmt.Errorf("failed running processor: %w", err)
 	}
 
-	err = i.AddDependencies(dependencies)
+	err = i.AddDependencies(ctx, dependencies)
 	if err != nil {
 		return fmt.Errorf("failed adding dependencies to go module via initor: %w", err)
 	}

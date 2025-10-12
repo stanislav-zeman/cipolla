@@ -42,10 +42,8 @@ func New(config config.Config, directory string) Initor {
 	}
 }
 
-func (i *Initor) Run() error {
-	ctx := context.Background()
-
-	err := i.initGoModule()
+func (i *Initor) Run(ctx context.Context) error {
+	err := i.initGoModule(ctx)
 	if err != nil {
 		return err
 	}
@@ -74,7 +72,7 @@ func (i *Initor) Run() error {
 	return nil
 }
 
-func (i *Initor) AddDependencies(dependencies []string) error {
+func (i *Initor) AddDependencies(ctx context.Context, dependencies []string) error {
 	for _, dependency := range dependencies {
 		if dependency == "" {
 			continue
@@ -85,7 +83,7 @@ func (i *Initor) AddDependencies(dependencies []string) error {
 			continue
 		}
 
-		cmd := exec.Command("go", "get", dependency)
+		cmd := exec.CommandContext(ctx, "go", "get", dependency)
 		cmd.Dir = i.directory
 
 		out, err := cmd.CombinedOutput()
@@ -94,7 +92,7 @@ func (i *Initor) AddDependencies(dependencies []string) error {
 		}
 	}
 
-	cmd := exec.Command("go", "mod", "tidy")
+	cmd := exec.CommandContext(ctx, "go", "mod", "tidy")
 	cmd.Dir = i.directory
 
 	out, err := cmd.CombinedOutput()
@@ -105,7 +103,7 @@ func (i *Initor) AddDependencies(dependencies []string) error {
 	return nil
 }
 
-func (i *Initor) initGoModule() error {
+func (i *Initor) initGoModule(ctx context.Context) error {
 	path := filepath.Join(i.directory, "go.mod")
 
 	// Check if go.mod already exists.
@@ -124,7 +122,7 @@ func (i *Initor) initGoModule() error {
 		return fmt.Errorf("failed creating project directory: %w", err)
 	}
 
-	cmd := exec.Command("go", "mod", "init", i.config.Module) //nolint: gosec
+	cmd := exec.CommandContext(ctx, "go", "mod", "init", i.config.Module)
 	cmd.Dir = i.directory
 
 	out, err := cmd.CombinedOutput()
@@ -169,7 +167,7 @@ func (i *Initor) initMakefile(ctx context.Context) error {
 }
 
 func (i *Initor) httpWriteFile(ctx context.Context, url, path string) error {
-	req, err := http.NewRequest(http.MethodGet, url, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
 		return fmt.Errorf("failed creating request: %w", err)
 	}
@@ -185,7 +183,9 @@ func (i *Initor) httpWriteFile(ctx context.Context, url, path string) error {
 		return fmt.Errorf("%w: %d", errUnexpectedStatusCode, resp.StatusCode)
 	}
 
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
