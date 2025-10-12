@@ -16,7 +16,7 @@ func ParseFramework(name string) (framework Framework, err error) {
 		return Framework{
 			ContextName:   "c",
 			ContextStruct: "*gin.Context",
-			Package:       "slog",
+			Package:       "github.com/gin-gonic/gin",
 		}, nil
 
 	case "echo":
