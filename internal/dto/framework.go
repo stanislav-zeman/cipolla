@@ -18,6 +18,7 @@ func ParseFramework(name string) (framework Framework, err error) {
 			ContextStruct: "*gin.Context",
 			Package:       "slog",
 		}
+
 		return framework, err
 
 	case "echo":
@@ -26,6 +27,7 @@ func ParseFramework(name string) (framework Framework, err error) {
 			ContextStruct: "*echo.Context",
 			Package:       "github.com/labstack/echo/v4",
 		}
+
 		return framework, err
 
 	case "http":
@@ -34,6 +36,7 @@ func ParseFramework(name string) (framework Framework, err error) {
 			ContextStruct: "*http.Request",
 			Package:       "net/http",
 		}
+
 		return framework, err
 
 	default:

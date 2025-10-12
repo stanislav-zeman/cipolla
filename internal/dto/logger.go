@@ -14,28 +14,24 @@ type Logger struct {
 func ParseLogger(name string) (logger Logger, err error) {
 	switch name {
 	case "slog":
-		logger = Logger{
+		return Logger{
 			Struct:  "*slog.Logger",
 			Package: "slog",
-		}
-		return
+		}, nil
 
 	case "zap":
-		logger = Logger{
+		return Logger{
 			Struct:  "*zap.Logger",
 			Package: "go.uber.org/zap",
-		}
-		return
+		}, nil
 
 	case "zerolog":
-		logger = Logger{
+		return Logger{
 			Struct:  "*zerolog.Logger",
 			Package: "github.com/rs/zerolog",
-		}
-		return
+		}, nil
 
 	default:
-		err = ErrUnknownLogger
-		return
+		return Logger{}, ErrUnknownLogger
 	}
 }

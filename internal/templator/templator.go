@@ -40,78 +40,91 @@ type Templator struct {
 
 func New(assetsDirector string) (t Templator, err error) { //nolint: cyclop
 	fp := filepath.Join(assetsDirector, layers.DomainLayer, "entity.tmpl")
+
 	entity, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.DomainLayer, "value.tmpl")
+
 	value, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.DomainLayer, "interface.tmpl")
+
 	domainInterface, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.DomainLayer, "service.tmpl")
+
 	domainService, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.DomainLayer, "repository.tmpl")
+
 	domainRepository, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.ApplicationLayer, "command.tmpl")
+
 	command, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.ApplicationLayer, "query.tmpl")
+
 	query, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.ApplicationLayer, "interface.tmpl")
+
 	appInterface, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.ApplicationLayer, "service.tmpl")
+
 	appService, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.InfrastructureLayer, "repository.tmpl")
+
 	infraRepository, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.APILayer, "rest/controller.tmpl")
+
 	apiController, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.APILayer, "rest/request.tmpl")
+
 	apiRequest, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
 	fp = filepath.Join(assetsDirector, layers.APILayer, "rest/response.tmpl")
+
 	apiResponse, err := template.ParseFiles(fp)
 	if err != nil {
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
@@ -208,5 +221,6 @@ func templateObject(t *template.Template, object any) (data []byte, err error) {
 	}
 
 	data = b.Bytes()
+
 	return data, nil
 }

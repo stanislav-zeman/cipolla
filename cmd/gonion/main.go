@@ -24,6 +24,7 @@ func main() {
 	flag.Parse()
 
 	log.Println("running gonion...")
+
 	err := runGonion()
 	if err != nil {
 		log.Print(err)
@@ -38,6 +39,7 @@ func runGonion() error {
 	}
 
 	var conf config.Config
+
 	err = yaml.Unmarshal(f, &conf) //nolint: musttag
 	if err != nil {
 		return fmt.Errorf("failed unmarshalling config file: %w", err)

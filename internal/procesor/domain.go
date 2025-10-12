@@ -104,10 +104,12 @@ func (p *Processor) processDomainRepositories(
 		}
 
 		var foundEntity bool
+
 		for _, entity := range entities {
 			if entity.Name == repository.Name {
 				repository.Entity = entity
 				foundEntity = true
+
 				break
 			}
 		}
