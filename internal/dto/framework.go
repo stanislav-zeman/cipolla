@@ -13,34 +13,27 @@ type Framework struct {
 func ParseFramework(name string) (framework Framework, err error) {
 	switch name {
 	case "gin":
-		framework = Framework{
+		return Framework{
 			ContextName:   "c",
 			ContextStruct: "*gin.Context",
 			Package:       "slog",
-		}
-
-		return framework, err
+		}, nil
 
 	case "echo":
-		framework = Framework{
+		return Framework{
 			ContextName:   "c",
 			ContextStruct: "*echo.Context",
 			Package:       "github.com/labstack/echo/v4",
-		}
-
-		return framework, err
+		}, nil
 
 	case "http":
-		framework = Framework{
+		return Framework{
 			ContextName:   "r",
 			ContextStruct: "*http.Request",
 			Package:       "net/http",
-		}
-
-		return framework, err
+		}, nil
 
 	default:
-		err = ErrUnknownFramework
-		return framework, err
+		return Framework{}, ErrUnknownFramework
 	}
 }
