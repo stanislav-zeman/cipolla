@@ -11,6 +11,7 @@ bin
 
 # Coverage and analysis tools
 *.out
+*.out.html
 
 # Go workspace file
 go.work
