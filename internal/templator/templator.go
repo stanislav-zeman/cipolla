@@ -36,6 +36,9 @@ type Templator struct {
 	apiController *template.Template
 	apiRequest    *template.Template
 	apiResponse   *template.Template
+
+	// Common templates.
+	config *template.Template
 }
 
 func New(assetsDirector string) (t Templator, err error) { //nolint: cyclop
@@ -130,6 +133,13 @@ func New(assetsDirector string) (t Templator, err error) { //nolint: cyclop
 		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
 	}
 
+	fp = filepath.Join(assetsDirector, "common", "config.tmpl")
+
+	config, err := template.ParseFiles(fp)
+	if err != nil {
+		return Templator{}, fmt.Errorf("%w: %w", ErrFailedParsingTemplate, err)
+	}
+
 	t = Templator{
 		entity:           entity,
 		value:            value,
@@ -147,6 +157,8 @@ func New(assetsDirector string) (t Templator, err error) { //nolint: cyclop
 		apiController: apiController,
 		apiRequest:    apiRequest,
 		apiResponse:   apiResponse,
+
+		config: config,
 	}
 
 	return t, nil
@@ -210,6 +222,12 @@ func (t *Templator) TemplateRESTAPIRequest(r dto.Request) (data []byte, err erro
 
 func (t *Templator) TemplateRESTAPIResponse(r dto.Response) (data []byte, err error) {
 	return templateObject(t.apiResponse, r)
+}
+
+// ----------------------------------------------------------------------------
+
+func (t *Templator) TemplateConfig(r dto.Config) (data []byte, err error) {
+	return templateObject(t.config, r)
 }
 
 func templateObject(t *template.Template, object any) (data []byte, err error) {

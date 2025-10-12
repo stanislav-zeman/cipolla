@@ -94,6 +94,13 @@ func (p *Processor) Run() (dependencies []string, err error) { //nolint: cyclop
 		if err != nil {
 			return nil, fmt.Errorf("failed processing api rest controllers: %w", err)
 		}
+
+		// --------------------------------------------------------------------------
+
+		err = p.processCommon(serviceName, dto.NewConfig(serviceName))
+		if err != nil {
+			return nil, fmt.Errorf("failed processing common: %w", err)
+		}
 	}
 
 	// Deduplicate dependencies.

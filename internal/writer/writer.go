@@ -91,6 +91,12 @@ func (w *Writer) WriteAPIResponse(service, method, name string, data []byte) err
 	return w.writeFile(service, layers.APILayer, directory, method+"_"+name+"_"+directory, data)
 }
 
+// ----------------------------------------------------------------------------
+
+func (w *Writer) WriteConfig(service string, data []byte) error {
+	return w.writeFile(service, "config", "", "config", data)
+}
+
 func (w *Writer) writeFile(service, layer, directory, name string, data []byte) error {
 	fp := filepath.Join(
 		w.directory,

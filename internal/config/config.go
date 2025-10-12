@@ -11,7 +11,6 @@ type Config struct {
 
 type ServiceConfig struct {
 	Logger         string               `yaml:"logger,omitempty"`
-	Config         bool                 `yaml:"config,omitempty"`
 	API            APIConfig            `yaml:"api,omitempty"`
 	Application    ApplicationConfig    `yaml:"application,omitempty"`
 	Domain         DomainConfig         `yaml:"domain,omitempty"`

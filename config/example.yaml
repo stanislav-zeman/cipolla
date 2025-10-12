@@ -2,84 +2,82 @@
 version: 1
 module: github.com/stanislav-zeman/gonion/example
 services:
-    management:
-        logger: zap
-        config: true
-        api:
-            rest:
-                framework: echo
-                controller:
-                  - name: Configuration
-                    methods: [get, post]
-                  - name: Stream
-                    methods: [get, post, patch]
-        application:
-            service:
-                - name: Stream
-                  queries:
-                    - name: Stream
-                      fields:
-                        - name: ID
-                          type: string
-                    - name: Configuration
-                  commands:
-                    - name: StreamCreate
-                      fields:
-                        - name: ID
-                          type: string
-                        - name: Name
-                          type: string
-                    - name: StreamUpdate
-                    - name: ConfigurationCreate
-                    - name: ConfigurationUpdate
-        domain:
-            service:
-                - name: Stream
-            entity:
-                - name: Stream
-                  fields:
-                    - name: ID
-                      type: string
-                    - name: Name
-                      type: string
-                    - name: State
-                      type: value.State
-                - name: Configuration
-                  fields:
-                    - name: ID
-                      type: string
-            value:
-                - name: State
-            repository:
-                - name: Stream
-                - name: Configuration
-        infrastructure:
-            repository:
-                - name: Stream
-                  type: Redis
-                - name: Configuration
-                  type: Postgres
-            client:
-                - name: AdsAPI
-    content:
-        logger: zap
-        config: true
-        api:
-            rest:
-                framework: echo
-                controller:
-                    - name: Program
-                      methods: [get]
-        application:
-            service:
-                - name: Program
-                  queries:
-                    - name: Program
-                    - name: Programs
-        domain:
-            entity:
-                - name: Program
+  management:
+    logger: zap
+    api:
+      rest:
+        framework: echo
+        controller:
+          - name: Configuration
+            methods: [get, post]
+          - name: Stream
+            methods: [get, post, patch]
+    application:
+      service:
+        - name: Stream
+          queries:
+            - name: Stream
+              fields:
+                - name: ID
+                  type: string
+            - name: Configuration
+          commands:
+            - name: StreamCreate
+              fields:
+                - name: ID
+                  type: string
+                - name: Name
+                  type: string
+            - name: StreamUpdate
+            - name: ConfigurationCreate
+            - name: ConfigurationUpdate
+    domain:
+      service:
+        - name: Stream
+      entity:
+        - name: Stream
+          fields:
+            - name: ID
+              type: string
+            - name: Name
+              type: string
+            - name: State
+              type: value.State
+        - name: Configuration
+          fields:
+            - name: ID
+              type: string
+      value:
+        - name: State
+      repository:
+        - name: Stream
+        - name: Configuration
+    infrastructure:
+      repository:
+        - name: Stream
+          type: Redis
+        - name: Configuration
+          type: Postgres
+      client:
+        - name: AdsAPI
+  content:
+    logger: zap
+    api:
+      rest:
+        framework: echo
+        controller:
+          - name: Program
+            methods: [get]
+    application:
+      service:
+        - name: Program
+          queries:
+            - name: Program
+            - name: Programs
+    domain:
+      entity:
+        - name: Program
 misc:
-    makefile: https://gist.githubusercontent.com/stanislav-zeman/f8cafea111bccf695c28acb0b04e6469/raw/1c6dfe277fb92a4cf0a1676a6cffa18474b15588/Makefile
-    golangci: https://gist.githubusercontent.com/stanislav-zeman/1836bb720556ba6ed644bb3ac5ef1f6f/raw/9e5a9d3d423edf82b70ed43af85d3b1c797b79cd/.golangci.yaml
-    gitignore: https://gist.githubusercontent.com/stanislav-zeman/d7300f47165bcccec7561b982deba049/raw/1f293b4c0da21f9dcf7ea42eae663aaef8834d9d/.gitignore
+  makefile: https://gist.githubusercontent.com/stanislav-zeman/f8cafea111bccf695c28acb0b04e6469/raw/1c6dfe277fb92a4cf0a1676a6cffa18474b15588/Makefile
+  golangci: https://gist.githubusercontent.com/stanislav-zeman/1836bb720556ba6ed644bb3ac5ef1f6f/raw/9e5a9d3d423edf82b70ed43af85d3b1c797b79cd/.golangci.yaml
+  gitignore: https://gist.githubusercontent.com/stanislav-zeman/d7300f47165bcccec7561b982deba049/raw/1f293b4c0da21f9dcf7ea42eae663aaef8834d9d/.gitignore
