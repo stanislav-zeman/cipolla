@@ -7,5 +7,9 @@ lint:
 test:
 	go test -race -timeout 1h -coverprofile cp.out ./...
 
-generate: build
+.PHONY: generate
+generate: clean build
 	go generate ./...
+
+clean:
+	rm -rf bin example
