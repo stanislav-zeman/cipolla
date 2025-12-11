@@ -8,18 +8,18 @@ import (
 	"os"
 	"time"
 
-	"github.com/stanislav-zeman/gonion/internal/config"
-	"github.com/stanislav-zeman/gonion/internal/initor"
-	processor "github.com/stanislav-zeman/gonion/internal/procesor"
-	"github.com/stanislav-zeman/gonion/internal/templator"
-	"github.com/stanislav-zeman/gonion/internal/writer"
+	"github.com/stanislav-zeman/cipolla/internal/config"
+	"github.com/stanislav-zeman/cipolla/internal/initor"
+	processor "github.com/stanislav-zeman/cipolla/internal/procesor"
+	"github.com/stanislav-zeman/cipolla/internal/templator"
+	"github.com/stanislav-zeman/cipolla/internal/writer"
 	yaml "gopkg.in/yaml.v3"
 )
 
 const applicationTimeout = 30 * time.Second
 
 var (
-	configPath         = flag.String("config", "gonion.yaml", "project structure configuration")
+	configPath         = flag.String("config", "cipolla.yaml", "project structure configuration")
 	outputDirectory    = flag.String("out", ".", "project structure output directory")
 	templatesDirectory = flag.String("templates", "assets", "directory with templates")
 )
@@ -27,16 +27,16 @@ var (
 func main() {
 	flag.Parse()
 
-	log.Println("running gonion...")
+	log.Println("running cipolla...")
 
-	err := runGonion()
+	err := runCipolla()
 	if err != nil {
 		log.Print(err)
 		os.Exit(1)
 	}
 }
 
-func runGonion() error {
+func runCipolla() error {
 	f, err := os.ReadFile(*configPath)
 	if err != nil {
 		return fmt.Errorf("failed reading config file: %w", err)

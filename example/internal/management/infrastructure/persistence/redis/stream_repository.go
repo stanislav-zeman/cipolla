@@ -2,8 +2,8 @@ package Redis
 
 import (
     "go.uber.org/zap"
-    "github.com/stanislav-zeman/gonion/example/internal/management/domain/repository"
-    "github.com/stanislav-zeman/gonion/example/internal/management/domain/entity"
+    "github.com/stanislav-zeman/cipolla/example/internal/management/domain/repository"
+    "github.com/stanislav-zeman/cipolla/example/internal/management/domain/entity"
 )
 
 var _ repository.StreamRepository = &StreamRepository{}

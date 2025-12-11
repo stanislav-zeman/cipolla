@@ -1,4 +1,4 @@
-# Gonion
+# Cipolla
 
 The idea of this project is to have a tool that generates project structure
 following the Onion/Hexagonal/Ports & Adapters architecture principles.
@@ -14,7 +14,7 @@ GolangCI linter configuration, gitignore etc.
 ## Usage
 
 ```sh
-gonion --templates ./gonion/assets --config ./gonion/config/example.yaml --out my-project
+cipolla --templates ./cipolla/assets --config ./cipolla/config/example.yaml --out my-project
 ```
 
 The project provides example configuration and showcases the generated

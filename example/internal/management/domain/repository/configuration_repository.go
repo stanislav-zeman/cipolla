@@ -1,7 +1,7 @@
 package repository
 
 import (
-    "github.com/stanislav-zeman/gonion/example/internal/management/domain/entity"
+    "github.com/stanislav-zeman/cipolla/example/internal/management/domain/entity"
 )
 
 type ConfigurationRepository interface {

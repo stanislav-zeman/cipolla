@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"slices"
 
-	"github.com/stanislav-zeman/gonion/internal/config"
-	"github.com/stanislav-zeman/gonion/internal/dto"
-	"github.com/stanislav-zeman/gonion/internal/templator"
-	"github.com/stanislav-zeman/gonion/internal/writer"
+	"github.com/stanislav-zeman/cipolla/internal/config"
+	"github.com/stanislav-zeman/cipolla/internal/dto"
+	"github.com/stanislav-zeman/cipolla/internal/templator"
+	"github.com/stanislav-zeman/cipolla/internal/writer"
 )
 
 var errNoMatchingRepositoryEntity = errors.New("no matching entity defined for repository")

@@ -1,6 +1,6 @@
 package config
 
-import "github.com/stanislav-zeman/gonion/internal/dto"
+import "github.com/stanislav-zeman/cipolla/internal/dto"
 
 type Config struct {
 	Version  int                      `yaml:"version,omitempty"`

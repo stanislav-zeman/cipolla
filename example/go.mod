@@ -1,10 +1,10 @@
-module github.com/stanislav-zeman/gonion/example
+module github.com/stanislav-zeman/cipolla/example
 
 go 1.24.3
 
 require (
 	github.com/labstack/echo/v4 v4.13.4
-	go.uber.org/zap v1.27.0
+	go.uber.org/zap v1.27.1
 )
 
 require (

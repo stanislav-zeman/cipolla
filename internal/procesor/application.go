@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/stanislav-zeman/gonion/internal/dto"
+	"github.com/stanislav-zeman/cipolla/internal/dto"
 )
 
 func (p *Processor) processApplicationServices(serviceName string, logger dto.Logger, services []dto.Service) error {

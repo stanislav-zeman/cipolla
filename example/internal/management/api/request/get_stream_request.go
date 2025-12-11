@@ -1,7 +1,7 @@
 package request
 
 import (
-    "github.com/stanislav-zeman/gonion/example/internal/management/application/query"
+    "github.com/stanislav-zeman/cipolla/example/internal/management/application/query"
 
     "github.com/labstack/echo/v4"
 )

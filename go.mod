@@ -1,4 +1,4 @@
-module github.com/stanislav-zeman/gonion
+module github.com/stanislav-zeman/cipolla
 
 go 1.24.1
 

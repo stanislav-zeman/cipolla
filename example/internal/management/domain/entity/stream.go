@@ -1,7 +1,7 @@
 package entity
 
 import (
-    "github.com/stanislav-zeman/gonion/example/internal/management/domain/value"
+    "github.com/stanislav-zeman/cipolla/example/internal/management/domain/value"
 )
 
 type Stream struct {

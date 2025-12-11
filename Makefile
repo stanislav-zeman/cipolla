@@ -1,5 +1,5 @@
 build:
-	go build -o bin ./...
+	go build -o bin/cipolla ./cmd/cipolla
 
 lint:
 	go tool github.com/golangci/golangci-lint/v2/cmd/golangci-lint run

@@ -26,7 +26,7 @@ linters:
             - $all
           allow:
             - $gostd
-            - github.com/stanislav-zeman/gonion
+            - github.com/stanislav-zeman/cipolla
             - gopkg.in/yaml.v3
             - golang.org/x/text
     dupl:

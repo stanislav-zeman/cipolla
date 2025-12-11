@@ -2,9 +2,9 @@ package services
 
 import (
 
-    "github.com/stanislav-zeman/gonion/example/internal/content/application/query"
+    "github.com/stanislav-zeman/cipolla/example/internal/content/application/query"
     "go.uber.org/zap"
-    "github.com/stanislav-zeman/gonion/example/internal/content/application/interface"
+    "github.com/stanislav-zeman/cipolla/example/internal/content/application/interface"
 )
 
 var _ interfaces.ProgramService = &ProgramService{}

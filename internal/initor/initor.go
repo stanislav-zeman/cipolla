@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stanislav-zeman/gonion/internal/config"
+	"github.com/stanislav-zeman/cipolla/internal/config"
 )
 
 const (

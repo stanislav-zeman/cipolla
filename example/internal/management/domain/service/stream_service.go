@@ -2,7 +2,7 @@ package services
 
 import (
     "go.uber.org/zap"
-    "github.com/stanislav-zeman/gonion/example/internal/management/domain/interface"
+    "github.com/stanislav-zeman/cipolla/example/internal/management/domain/interface"
 )
 
 var _ interfaces.StreamService = &StreamService{}

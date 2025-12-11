@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/stanislav-zeman/gonion/internal/dto"
-	"github.com/stanislav-zeman/gonion/internal/layers"
+	"github.com/stanislav-zeman/cipolla/internal/dto"
+	"github.com/stanislav-zeman/cipolla/internal/layers"
 )
 
 var ErrFailedParsingTemplate = errors.New("failed parsing template")

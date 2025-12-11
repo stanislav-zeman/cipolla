@@ -1,6 +1,6 @@
 ---
 version: 1
-module: github.com/stanislav-zeman/gonion/example
+module: github.com/stanislav-zeman/cipolla/example
 services:
   management:
     logger: zap

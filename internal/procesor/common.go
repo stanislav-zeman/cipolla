@@ -3,7 +3,7 @@ package processor
 import (
 	"fmt"
 
-	"github.com/stanislav-zeman/gonion/internal/dto"
+	"github.com/stanislav-zeman/cipolla/internal/dto"
 )
 
 func (p *Processor) processCommon(

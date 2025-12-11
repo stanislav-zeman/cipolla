@@ -1,8 +1,8 @@
 package interfaces
 
 import (
-    "github.com/stanislav-zeman/gonion/example/internal/management/application/command"
-    "github.com/stanislav-zeman/gonion/example/internal/management/application/query"
+    "github.com/stanislav-zeman/cipolla/example/internal/management/application/command"
+    "github.com/stanislav-zeman/cipolla/example/internal/management/application/query"
 )
 
 type StreamService interface{

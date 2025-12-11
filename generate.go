@@ -1,3 +1,3 @@
-package gonion
+package cipolla
 
-//go:generate bin/gonion --config config/example.yaml --out example
+//go:generate bin/cipolla --config config/example.yaml --out example

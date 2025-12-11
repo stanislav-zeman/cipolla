@@ -2,7 +2,7 @@ package interfaces
 
 import (
 
-    "github.com/stanislav-zeman/gonion/example/internal/content/application/query"
+    "github.com/stanislav-zeman/cipolla/example/internal/content/application/query"
 )
 
 type ProgramService interface{

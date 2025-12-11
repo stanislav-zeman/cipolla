@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/stanislav-zeman/gonion/internal/convertor"
-	"github.com/stanislav-zeman/gonion/internal/layers"
+	"github.com/stanislav-zeman/cipolla/internal/convertor"
+	"github.com/stanislav-zeman/cipolla/internal/layers"
 )
 
 const defaultFilePermissions = 0o755
