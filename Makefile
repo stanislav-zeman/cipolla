@@ -8,7 +8,7 @@ lint:
 
 .PHONY: test
 test:
-	go test -race -timeout 1h -coverprofile cp.out ./...
+	go test -race -timeout 1h -coverprofile coverage.out ./...
 
 .PHONY: generate
 generate: clean build
