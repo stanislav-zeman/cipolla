@@ -1,3 +1,8 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/stanislav-zeman/cipolla)](https://goreportcard.com/report/github.com/stanislav-zeman/cipolla)
+![Go version](https://img.shields.io/github/go-mod/go-version/stanislav-zeman/cipolla)
+![CI status](https://github.com/stanislav-zeman/cipolla/actions/workflows/ci.yaml/badge.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/stanislav-zeman/cipolla/badge.svg?branch=master)](https://coveralls.io/github/stanislav-zeman/cipolla?branch=master)
+
 # Cipolla
 
 The idea of this project is to have a tool that generates project structure
