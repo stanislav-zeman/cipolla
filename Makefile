@@ -17,4 +17,4 @@ generate: clean build
 
 .PHONY: clean
 clean:
-	rm -rf bin example
+	rm -rf bin example *.out *.out.html
