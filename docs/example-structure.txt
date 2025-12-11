@@ -1,0 +1,79 @@
+example
+├── go.mod
+├── go.sum
+├── internal
+│   ├── content
+│   │   ├── api
+│   │   │   ├── controller
+│   │   │   │   └── program_controller.go
+│   │   │   ├── request
+│   │   │   │   └── get_program_request.go
+│   │   │   └── response
+│   │   │       └── get_program_response.go
+│   │   ├── application
+│   │   │   ├── interface
+│   │   │   │   └── program_service.go
+│   │   │   ├── query
+│   │   │   │   ├── program_query.go
+│   │   │   │   └── programs_query.go
+│   │   │   └── service
+│   │   │       └── program_service.go
+│   │   ├── config
+│   │   │   └── config.go
+│   │   └── domain
+│   │       └── entity
+│   │           └── program.go
+│   └── management
+│       ├── api
+│       │   ├── controller
+│       │   │   ├── configuration_controller.go
+│       │   │   └── stream_controller.go
+│       │   ├── request
+│       │   │   ├── get_configuration_request.go
+│       │   │   ├── get_stream_request.go
+│       │   │   ├── patch_stream_request.go
+│       │   │   ├── post_configuration_request.go
+│       │   │   └── post_stream_request.go
+│       │   └── response
+│       │       ├── get_configuration_response.go
+│       │       ├── get_stream_response.go
+│       │       ├── patch_stream_response.go
+│       │       ├── post_configuration_response.go
+│       │       └── post_stream_response.go
+│       ├── application
+│       │   ├── command
+│       │   │   ├── configuration_create_command.go
+│       │   │   ├── configuration_update_command.go
+│       │   │   ├── stream_create_command.go
+│       │   │   └── stream_update_command.go
+│       │   ├── interface
+│       │   │   └── stream_service.go
+│       │   ├── query
+│       │   │   ├── configuration_query.go
+│       │   │   └── stream_query.go
+│       │   └── service
+│       │       └── stream_service.go
+│       ├── config
+│       │   └── config.go
+│       ├── domain
+│       │   ├── entity
+│       │   │   ├── configuration.go
+│       │   │   └── stream.go
+│       │   ├── interface
+│       │   │   └── stream_service.go
+│       │   ├── repository
+│       │   │   ├── configuration_repository.go
+│       │   │   └── stream_repository.go
+│       │   ├── service
+│       │   │   └── stream_service.go
+│       │   └── value
+│       │       └── state.go
+│       └── infrastructure
+│           └── persistence
+│               ├── postgres
+│               │   └── configuration_repository.go
+│               └── redis
+│                   └── stream_repository.go
+└── Makefile
+
+35 directories, 42 files

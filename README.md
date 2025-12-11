@@ -25,55 +25,5 @@ cipolla --templates ./cipolla/assets --config ./cipolla/config/example.yaml --ou
 The project provides example configuration and showcases the generated
 code in the `example` directory.
 
-The example project structure looks like so:
-
-```
-example
-├── go.mod
-├── internal
-│   ├── content
-│   │   ├── application
-│   │   │   ├── interface
-│   │   │   │   └── program_service.go
-│   │   │   ├── query
-│   │   │   │   ├── program_query.go
-│   │   │   │   └── programs_query.go
-│   │   │   └── service
-│   │   │       └── program_service.go
-│   │   └── domain
-│   │       └── entity
-│   │           └── program.go
-│   └── management
-│       ├── application
-│       │   ├── command
-│       │   │   ├── configuration_create_command.go
-│       │   │   ├── configuration_update_command.go
-│       │   │   └── stream_create_command.go
-│       │   ├── interface
-│       │   │   └── stream_service.go
-│       │   ├── query
-│       │   │   ├── configuration_query.go
-│       │   │   └── stream_query.go
-│       │   └── service
-│       │       └── stream_service.go
-│       ├── domain
-│       │   ├── entity
-│       │   │   ├── configuration.go
-│       │   │   └── stream.go
-│       │   ├── interface
-│       │   │   └── stream_service.go
-│       │   ├── repository
-│       │   │   ├── configuration_repository.go
-│       │   │   └── stream_repository.go
-│       │   ├── service
-│       │   │   └── stream_service.go
-│       │   └── value
-│       │       └── state.go
-│       └── infrastructure
-│           └── persistence
-│               ├── postgres
-│               │   └── configuration_repository.go
-│               └── redis
-│                   └── stream_repository.go
-└── Makefile
-```
+To view the example project directory structure checkout the
+generated [project structure file](docs/example-structure.txt).

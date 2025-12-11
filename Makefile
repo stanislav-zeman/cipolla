@@ -13,6 +13,7 @@ test:
 .PHONY: generate
 generate: clean build
 	go generate ./...
+	tree example > docs/example-structure.txt
 
 .PHONY: clean
 clean:
